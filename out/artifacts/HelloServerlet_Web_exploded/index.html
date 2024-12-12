@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>AJAX Sample</h1>
+<p id="para">
+    This is an example for sample AJAX project
+</p>
+<img id="logo" src="" width="400px">
+<button id="ajax-button">Send a AJAX request</button>
+<table >
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Address</th>
+        </tr>
+    </thead>
+    <tbody id="tblBody">
+
+
+
+    </tbody>
+
+</table>
+
+
+
+
+<script src="assets/JS/jquery-3.7.1.min.js"></script>
+<script>
+    /*$('#ajax-button').click(function (){
+        console.log("request started");
+        var http = new XMLHttpRequest();
+
+        console.log(http.readyState, "After the XMLHttpRequest Object Created"); // http.readyState - XMLHttpRequest object eke curret state
+        http.open('GET', '../db/db.txt');
+        console.log(http.readyState, "After the OPEN method invoked");//http.status server side eken ena response eka
+        console.log(http.responseText); // url eke thiyana text eka enna ona eth methanadi enne na open witharak karapu nis
+        console.log(http.readyState, "After the response text printed");
+        //two required arguments - method, url
+        //method - purpose of the request(GET,POST,PUT,DELETE, etc....)
+        // url - destination of the request
+        http.send();
+        console.log(http.readyState,"After the SEND method invoked");
+
+        http.onreadystatechange = function (){
+            console.log(http.readyState,"Inside on Ready state change event");
+            console.log(http.responseText) // url eke thiyana text eka enawa..
+
+            if (http.status == 200 && http.readyState == 4){
+                $("#para").text(http.responseText);
+                $("#logo").attr('src','../db/undraw_Educator_re_ju47.png');
+
+            }
+            console.log(http.status)
+        }
+
+        console.log("Request Finished");
+
+
+    })*/
+</script>
+
+<script>
+    //synchronous
+   /* console.log("start");
+    console.log("middle");
+    console.log("end");*/
+
+    //asynchronous
+    /*console.log("start");
+    setTimeout(()=>{
+        console.log("middle");
+    },2000)
+
+    console.log("end");*/
+
+</script>
+
+
+<!--
+<script>
+    //asynchronous
+    $('#ajax-button').click(function (){
+        console.log("request started");
+        var http = new XMLHttpRequest();
+
+        http.open('GET', '../db/db.txt',false);
+        http.send();
+
+        http.onreadystatechange = function (){
+            console.log(http.readyState,"Inside on Ready state change event");
+            console.log(http.responseText)
+
+            if (http.status == 200 && http.readyState == 4){
+                $("#para").text(http.responseText);
+
+            }
+        }
+
+        console.log("Request Finished");
+
+
+    })
+
+
+</script>
+-->
+
+
+<!--<script>
+    $("#ajax-button").click(function (){
+        console.log("started");
+        $.ajax({
+            url: '../db/db.txt',
+            async:false,
+            success:function (response){
+                $("#para").text(response);
+                console.log(response);
+            },
+            error: function (response){
+                $("#para").text(response);
+            }
+        })
+        console.log("finished")
+    })
+</script>-->
+
+<!--
+<script>
+    $("#ajax-button").click(function (){
+        console.log("started");
+        $.ajax({
+            url: 'https://jsonplaceholder.typicode.com/comments',
+            async:false,
+            success:function (response){
+                var arr = response;
+                // $("#para").text(response);
+                console.log(response);
+
+                arr.map((arri, number) => {
+                let data = `<tr>
+                                <td>${arri.id}</td>
+                                <td>${arri.name}</td>
+                                <td>${arri.email}</td>
+
+                            </tr>`
+
+                $("#tblBody").append(data);
+
+            })
+            },
+            error: function (response){
+                $("#para").text(response);
+            }
+        })
+        console.log("finished")
+    })
+</script>
+-->
+
+<script>
+    $("#ajax-button").click(function (){
+        console.log("started");
+        $.ajax({
+            url: 'http://localhost:8080/HelloServerlet_Web_exploded/hello',
+            //method: 'POST',
+            method: 'GET',
+            async:false,
+            success:function (response){
+                var arr = response;
+                // $("#para").text(response);
+                console.log(response);
+
+
+
+            },
+            error: function (response){
+                $("#para").text(response);
+            }
+        })
+        console.log("finished")
+    })
+</script>
+
+</body>
+</html>
