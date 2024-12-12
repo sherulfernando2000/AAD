@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/GDSE69.iml" filepath="$PROJECT_DIR$/GDSE69.iml" />
+      <module fileurl="file://$PROJECT_DIR$/HelloMy/HelloMy.iml" filepath="$PROJECT_DIR$/HelloMy/HelloMy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/HelloServerlet/HelloServerlet.iml" filepath="$PROJECT_DIR$/HelloServerlet/HelloServerlet.iml" />
+      <module fileurl="file://$PROJECT_DIR$/HelloSherul/HelloSherul.iml" filepath="$PROJECT_DIR$/HelloSherul/HelloSherul.iml" />
+    </modules>
+  </component>
+</project>
