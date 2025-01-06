@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Place Order</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+<!--Header Section-->
+<nav class="navbar navbar-expand-lg bg-body-tertiary ">
+    <div class="container-fluid d-flex justify-content-center" >
+        <a class="navbar-brand" href="#">Kade2</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav  ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html">Customer</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="item.html">Item </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="placeOrder.html">Place Order</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<section id="placeOrder">
+    <!-- Place Order Section Content -->
+    <p class="fs-2 text-center">Place Order</p>
+    <!-- Content for Order Form -->
+    <div class="container">
+        <div class="row gx-3 order-section">
+            <div class="col-lg-8 mb-3">
+                <div class="card h-100">
+                    <div class="card-body">
+
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" placeholder="Order ID" aria-label="Order ID" id="orderId">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" placeholder="Order Date" aria-label="Order Date" id="orderDate">
+                            </div>
+                        </div>
+
+
+                        <div class="row g-3 mb-3">
+                            <select class="form-select form-select-sm" aria-label="Small select example" id="cusId" >
+                                <option selected>Select Customer Id</option>
+                            </select>
+
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" placeholder="customer Name" aria-label="Item Name" id="cusName">
+                            </div>
+
+
+                        </div>
+
+                        <div class="row g-3 mb-3">
+                            <!--  <div class="col-md-6">
+                                  <input type="text" class="form-control" placeholder="Item Code" aria-label="Item Code" id="itCode">
+                              </div>-->
+                            <select class="form-select form-select-sm" aria-label="Small select example" id="itCode" >
+                                <option selected>Select item code</option>
+                            </select>
+
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" placeholder="Item Name" aria-label="Item Name" id="itName">
+                            </div>
+                        </div>
+
+
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" placeholder="Unit Price" aria-label="Unit Price" id="uPrice">
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" placeholder="Qty On Hand" aria-label="Qty On Hand" id="qtyOnHand1">
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" placeholder="Qty" aria-label="Qty" id="qty">
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-end mt-3">
+                            <button type="button" class="btn btn-primary" id="addToCart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        <div class="table-responsive" id="table place">
+            <table class="table table-striped text-center">
+                <thead>
+                <tr>
+                    <th scope="col">Item Code</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Qty</th>
+                    <th scope="col">Total</th>
+                </tr>
+                </thead>
+                <tbody id="orderTableBody">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+        crossorigin="anonymous"></script>
+
+<script src="../js/jquery-3.7.1.min.js"></script>
+<script>
+    let cartData=[];
+    let tot=0;
+
+    $("#addToCart").click( (e)=>{
+        let itemCode=  $('#itCode').val();
+        let des=$('#itName').val();
+        let price=$('#uPrice').val();
+        let qty=$('#qty').val();
+        let total=qty*price;
+        tot= tot + total;
+
+        let cartObject = {itemCode,des,price,qty,total};
+        cartData.push(cartObject);
+        loadCartData();
+    })
+
+    function loadCartData(){
+        $("#orderTableBody").empty();
+        for(let i=0;i<cartData.length;i++){
+            let row=`<tr>
+                        <td>${cartData[i].itemCode}</td>
+                        <td>${cartData[i].des}</td>
+                        <td>${cartData[i].price}</td>
+                        <td>${cartData[i].qty}</td>
+                        <td>${cartData[i].total}</td>
+                       </tr>`;
+
+            $('#orderTableBody').append(row);
+        }
+    }
+
+    $("#purchase").click( (e) =>{
+
+        let orderId=$("#orderId").val();
+        let customerId=$("#cusId").val();
+        let itemId=$("#itCode").val();
+        let date=$("#orderDate").val();
+
+        $.ajax({
+            url:"http://localhost:8080/Application_1_Web_exploded/order",
+            method:'POST',
+            data:{
+                orderId:orderId,
+                date:date,
+                customerId:customerId
+            },
+            success:function (response){
+                orderDetails(orderId);
+            },
+            error:function (error){
+                console.log(error)
+            }
+        })
+    })
+
+    function orderDetails(orderId){
+        cartData.forEach(element =>{
+            console.log(element.itemCode);
+            $.ajax({
+                url:'http://localhost:8080/Application_1_Web_exploded/orders',
+                method:'POST',
+                data:{
+                    orderId:orderId,
+                    itemCode:element.itemCode
+                },
+                success:function (response){
+                    updateItem(element.itemCode,element.qtyOnHand);
+                },
+                error:function (error){
+                    console.log(error)
+                }
+            })
+        })
+
+    }
+
+    function updateItem(itemCode,qtyOnHand){
+        $.ajax({
+            url:'http://localhost:8080/Application_1_Web_exploded/item',
+            method:'PUT',
+            data:JSON.stringify({
+                itemCode:itemCode,
+                qtyOnHand:qtyOnHand
+            }),
+            success:function (response){
+                // cartData.splice(0,cartData.length)
+                loadOrderDetails();
+                clearfield()
+            }
+        })
+    }
+
+    function clearfield(){
+        $("#orderId").val('');
+        $("#orderDate").val('');
+        $("#cusId").val('');
+        $("#cusName").val('');
+        $("#itCode").val('');
+        $("#itName").val('');
+        $("#uPrice").val('');
+        $("#qtyOnHand1").val('');
+        $("#qty").val('');
+
+    }
+
+
+    const selectCustomerIds =() =>{
+        $.ajax({
+            url: "http://localhost:8080/Application_1_Web_exploded//customer",
+            method:"GET",
+            success: function (response) {
+                let data =response;
+                $('#cusId').empty();
+                $('#cusId').append(
+                    `<option value="0">Select Customer</option>`
+                );
+                for(let i=0;i<data.length;i++){
+                    $(`#cusId`).append(`<option value="${data[i].id}">${data[i].id}</option>`)
+                }
+            },
+            error: function (){
+                console.log("error")
+            }
+        })
+    }
+    selectCustomerIds()
+
+    $("#cusId").on('change', (e) =>{
+        let cid=e.target.value;
+        $.ajax({
+            url: "http://localhost:8080/Application_1_Web_exploded//customer",
+            method:"GET",
+            success:function (response){
+                let data = response;
+
+                for(let i=0;i<data.length;i++){
+                    if(cid == data[i].id){
+                        $('#cusName').val(data[i].name);
+                    }
+                }
+            },
+            error:function (error){
+                console.log(error)
+            }
+        })
+    })
+
+    $("#itCode").on('change', (e) =>{
+        let itcode=e.target.value;
+        $.ajax({
+            url: "http://localhost:8080/Application_1_Web_exploded/item",
+            method:"GET",
+            success:function (response){
+                let data=response;
+                for(let i=0;i<data.length;i++){
+                    if(itcode == data[i].code){
+                        $('#itName').val(data[i].desc);
+                        $('#uPrice').val(data[i].price);
+                        $('#qtyOnHand1').val(data[i].qtyOnHand);
+
+                    }
+                }
+            },
+            error: function (error){
+                console.log(error);
+            }
+        })
+    })
+
+
+    const selectItemsIds =() =>{
+        $.ajax({
+            url: "http://localhost:8080/Application_1_Web_exploded/item",
+            method:"GET",
+            success: function (response) {
+                let data =response;
+                $('#itCode').empty();
+                $('#itCode').append(
+                    `<option value="0">Select Item</option>`
+                );
+                for(let i=0;i<data.length;i++){
+                    $(`#itCode`).append(`<option value="${data[i].code}">${data[i].code}</option>`)
+                }
+            },
+            error: function (){
+                console.log("error")
+            }
+        })
+    }
+
+    selectItemsIds()
+
+
+    let orderID =0;
+
+    function generateOrderID() {
+        console.log("Generating Order ID...");
+        const id = `ORD-${orderID}`;
+        orderID++;
+        console.log(`Generated Order ID: ${id}`);
+        return id;
+    }
+
+
+    function getCurrentDate() {
+        const today = new Date();
+        return today.toISOString().split('T')[0]; // Format: YYYY-MM-DD
+    }
+
+    $(document).ready(function () {
+        loadOrderDetails();
+    });
+
+    function loadOrderDetails() {
+        const newOrderID = generateOrderID();
+        const orderDate = getCurrentDate();
+
+        // Set values to text fields
+        $("#orderId").val(newOrderID);
+        $("#orderDate").val(orderDate);
+    }
+</script>
+
+</body>
+</html>

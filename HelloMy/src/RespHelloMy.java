@@ -13,5 +13,6 @@ public class RespHelloMy extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
        PrintWriter out = resp.getWriter();
        out.println("Hello from Hello my!!!");
+
     }
 }
