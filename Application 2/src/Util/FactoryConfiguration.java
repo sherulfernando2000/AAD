@@ -1,7 +1,7 @@
+package Util;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-
-import org.hibernate.cfg.Configuration;
 
 public class FactoryConfiguration {
 
@@ -31,17 +31,17 @@ public class FactoryConfiguration {
 
 
 
-    /*private static FactoryConfiguration factoryConfiguration;
+    /*private static Util.FactoryConfiguration factoryConfiguration;
 
     private SessionFactory sessionFactory;
 
-    private FactoryConfiguration(){
-        Configuration configuration = new Configuration().configure().addAnnotatedClass(Customer.class).addAnnotatedClass(Item.class);
+    private Util.FactoryConfiguration(){
+        Configuration configuration = new Configuration().configure().addAnnotatedClass(Entity.Customer.class).addAnnotatedClass(Entity.Item.class);
         sessionFactory = configuration.buildSessionFactory();
     }
 
-    public static FactoryConfiguration getInstance(){
-        return factoryConfiguration == null ? factoryConfiguration = new FactoryConfiguration(): factoryConfiguration;
+    public static Util.FactoryConfiguration getInstance(){
+        return factoryConfiguration == null ? factoryConfiguration = new Util.FactoryConfiguration(): factoryConfiguration;
     }
 
     public Session getSession(){

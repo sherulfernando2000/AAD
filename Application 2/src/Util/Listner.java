@@ -1,13 +1,12 @@
+package Util;
+
+import Entity.Customer;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
 import jakarta.servlet.annotation.WebListener;
 import org.hibernate.HibernateException;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
-
-import java.util.List;
 
 @WebListener
 public class Listner implements ServletContextListener {
@@ -47,32 +46,32 @@ public class Listner implements ServletContextListener {
 
         *//*Configuration configuration = new Configuration();
         configuration.configure("hibernate.cfg.xml");
-        configuration.addAnnotatedClass(Customer.class);
+        configuration.addAnnotatedClass(Entity.Customer.class);
 
         Session session = configuration.buildSessionFactory().openSession();
         Transaction transaction =session.beginTransaction();
-        Customer customerDTO = new  Customer(1,"sherul","Galle");
+        Entity.Customer customerDTO = new  Entity.Customer(1,"sherul","Galle");
         session.save(customerDTO);
         transaction.commit();
         session.close();*//*
 
-        *//*Session session = FactoryConfiguration.getInstance().getSession();
+        *//*Session session = Util.FactoryConfiguration.getInstance().getSession();
         Transaction tx = session.beginTransaction();
-        *//**//*Customer customerDTO = new  Customer(1,"sherul","Galle");
+        *//**//*Entity.Customer customerDTO = new  Entity.Customer(1,"sherul","Galle");
         session.save(customerDTO);*//**//*
-        String hql = "from Customer";
-        List<Customer> Customerlist = session.createQuery(hql).list();
+        String hql = "from Entity.Customer";
+        List<Entity.Customer> Customerlist = session.createQuery(hql).list();
 
-        for (Customer customer : Customerlist) {
+        for (Entity.Customer customer : Customerlist) {
             System.out.println(customer.getId()+customer.getName());
         }
 
         tx.commit();
         session.close();*//*
 
-        *//*Session session = FactoryConfiguration.getInstance().getSession();
+        *//*Session session = Util.FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
-        Customer customer = new Customer(1, "sherul", "gallet");
+        Entity.Customer customer = new Entity.Customer(1, "sherul", "gallet");
         System.out.println("before session update");
         session.update(customer);
         transaction.commit();

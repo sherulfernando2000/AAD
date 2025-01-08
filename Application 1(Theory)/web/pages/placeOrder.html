@@ -19,10 +19,10 @@
                     <a class="nav-link active" aria-current="page" href="#">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../index.html">Customer</a>
+                    <a class="nav-link" href="../index.html">Entity.Customer</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="item.html">Item </a>
+                    <a class="nav-link" href="item.html">Entity.Item </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="placeOrder.html">Place Order</a>
@@ -55,11 +55,11 @@
 
                         <div class="row g-3 mb-3">
                             <select class="form-select form-select-sm" aria-label="Small select example" id="cusId" >
-                                <option selected>Select Customer Id</option>
+                                <option selected>Select Entity.Customer Id</option>
                             </select>
 
                             <div class="col-md-6">
-                                <input type="text" class="form-control" placeholder="customer Name" aria-label="Item Name" id="cusName">
+                                <input type="text" class="form-control" placeholder="customer Name" aria-label="Entity.Item Name" id="cusName">
                             </div>
 
 
@@ -67,14 +67,14 @@
 
                         <div class="row g-3 mb-3">
                             <!--  <div class="col-md-6">
-                                  <input type="text" class="form-control" placeholder="Item Code" aria-label="Item Code" id="itCode">
+                                  <input type="text" class="form-control" placeholder="Entity.Item Code" aria-label="Entity.Item Code" id="itCode">
                               </div>-->
                             <select class="form-select form-select-sm" aria-label="Small select example" id="itCode" >
                                 <option selected>Select item code</option>
                             </select>
 
                             <div class="col-md-6">
-                                <input type="text" class="form-control" placeholder="Item Name" aria-label="Item Name" id="itName">
+                                <input type="text" class="form-control" placeholder="Entity.Item Name" aria-label="Entity.Item Name" id="itName">
                             </div>
                         </div>
 
@@ -102,7 +102,7 @@
             <table class="table table-striped text-center">
                 <thead>
                 <tr>
-                    <th scope="col">Item Code</th>
+                    <th scope="col">Entity.Item Code</th>
                     <th scope="col">Description</th>
                     <th scope="col">Price</th>
                     <th scope="col">Qty</th>
@@ -240,7 +240,7 @@
                 let data =response;
                 $('#cusId').empty();
                 $('#cusId').append(
-                    `<option value="0">Select Customer</option>`
+                    `<option value="0">Select Entity.Customer</option>`
                 );
                 for(let i=0;i<data.length;i++){
                     $(`#cusId`).append(`<option value="${data[i].id}">${data[i].id}</option>`)
@@ -304,7 +304,7 @@
                 let data =response;
                 $('#itCode').empty();
                 $('#itCode').append(
-                    `<option value="0">Select Item</option>`
+                    `<option value="0">Select Entity.Item</option>`
                 );
                 for(let i=0;i<data.length;i++){
                     $(`#itCode`).append(`<option value="${data[i].code}">${data[i].code}</option>`)

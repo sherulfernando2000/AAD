@@ -20,10 +20,10 @@
                     <a class="nav-link active" aria-current="page" href="#">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../index.html">Customer</a>
+                    <a class="nav-link" href="../index.html">Entity.Customer</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="item.html">Item </a>
+                    <a class="nav-link" href="item.html">Entity.Item </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="placeOrder.html">Place Order</a>
@@ -47,21 +47,21 @@
                 <div class="container m-2">
                     <form>
                         <div class="mb-3">
-                            <label for="item_code" class="form-label">Item Code</label>
+                            <label for="item_code" class="form-label">Entity.Item Code</label>
                             <input type="text" class="form-control" id="item_code">
                         </div>
                         <div class="mb-3">
-                            <label for="item_desc" class="form-label">Item Desc</label>
+                            <label for="item_desc" class="form-label">Entity.Item Desc</label>
                             <input type="text" class="form-control" id="item_desc">
                         </div>
 
                         <div class="mb-3">
-                            <label for="item_price" class="form-label">Item Price</label>
+                            <label for="item_price" class="form-label">Entity.Item Price</label>
                             <input type="text" class="form-control" id="item_price">
                         </div>
 
                         <div class="mb-3">
-                            <label for="item_qty" class="form-label">Item Qty</label>
+                            <label for="item_qty" class="form-label">Entity.Item Qty</label>
                             <input type="text" class="form-control" id="item_qty">
                         </div>
                         <button id="btn_save_item" type="submit" class="btn btn-primary">Save</button>
@@ -80,21 +80,21 @@
                 <div class="container m-2">
                     <form>
                         <div class="mb-3">
-                            <label for="update_item_code" class="form-label">Item Code</label>
+                            <label for="update_item_code" class="form-label">Entity.Item Code</label>
                             <input type="text" class="form-control" id="update_item_code" readonly>
                         </div>
                         <div class="mb-3">
-                            <label for="update_item_desc" class="form-label">Item Desc</label>
+                            <label for="update_item_desc" class="form-label">Entity.Item Desc</label>
                             <input type="text" class="form-control" id="update_item_desc">
                         </div>
 
                         <div class="mb-3">
-                            <label for="update_item_price" class="form-label">Item Price</label>
+                            <label for="update_item_price" class="form-label">Entity.Item Price</label>
                             <input type="text" class="form-control" id="update_item_price">
                         </div>
 
                         <div class="mb-3">
-                            <label for="update_item_qty" class="form-label">Item Qty</label>
+                            <label for="update_item_qty" class="form-label">Entity.Item Qty</label>
                                 <input type="text" class="form-control" id="update_item_qty">
                         </div>
                         <button id="btn_update_item" type="submit" class="btn btn-primary">Update</button>
@@ -109,7 +109,7 @@
 <hr/>
 
 <select id="user_dropdown" class="form-control">
-    <option value="">Select a Item</option>
+    <option value="">Select a Entity.Item</option>
 </select>
 
 <hr/>
@@ -119,7 +119,7 @@
     <thead>
     <tr>
         <td>Code</td>
-        <td>Item Desc</td>
+        <td>Entity.Item Desc</td>
         <td>Price</td>
         <td>Quantity</td>
     </tr>
@@ -210,7 +210,7 @@
                 qty: iQty
             },
             success: (res) => {
-                alert("Item saved...!")
+                alert("Entity.Item saved...!")
                 fetchData()
                 $('#exampleModal').modal('hide')
                 console.log(res)
@@ -256,7 +256,7 @@
             contentType: "application/json", // Specify JSON data format
 
             success: (res) => {
-                alert("Item updated...!")
+                alert("Entity.Item updated...!")
                 fetchData()
                 $('#update_modal').modal('hide')
                 console.log(res)
